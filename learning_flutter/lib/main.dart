@@ -6,7 +6,7 @@ void main() {
     title: 'Exploring UI',
     home: Scaffold(
       appBar: AppBar(
-        title: Text("Basic List Views"),
+        title: Text("Basic List"),
       ),
       body: getListView(),
     ),
