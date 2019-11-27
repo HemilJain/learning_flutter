@@ -10,39 +10,26 @@ void main() {
       ),
       body: getListView(),
     ),
-    // home: Home(),
     debugShowCheckedModeBanner: false,
   ));
 }
 
+List<String> getListElements() {
+  var items = List<String>.generate(100, (counter) => "Item ${counter + 1}");
+  return items;
+}
+
 Widget getListView() {
-  var listView = ListView(
-    children: <Widget>[
-      ListTile(
-        leading: Icon(Icons.landscape),
-        title: Text("Landscape"),
-        subtitle: Text("Beautiful Views"),
-        trailing: Icon(Icons.wb_sunny),
-        onTap: () {
-          debugPrint("Landscape tapped");
-        },
-      ),
-      ListTile(
-          leading: Icon(Icons.laptop_chromebook),
-          title: Text("Windows"),
-          onTap: () {
-            EdgeInsets.only(left: 50.0);
-          }),
-      ListTile(
-        leading: Icon(Icons.phone),
-        title: Text("Android"),
-      ),
-      Text("Yet another element"),
-      Container(
-        color: Colors.red,
-        height: 50.0,
-      )
-    ],
-  );
+  var listItems = getListElements();
+
+  var listView = ListView.builder(itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(Icons.arrow_right),
+      title: Text(listItems[index]),
+      onTap: () {
+        debugPrint('${listItems[index]} was tapped.');
+      },
+    );
+  });
   return listView;
 }
