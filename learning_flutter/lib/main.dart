@@ -9,9 +9,29 @@ void main() {
         title: Text("Basic List View"),
       ),
       body: getListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          debugPrint("FAB clicked");
+        },
+        child: Icon(Icons.add),
+        tooltip: 'Add one more Item',
+      ),
     ),
     debugShowCheckedModeBanner: false,
   ));
+}
+
+void showSnackBar(BuildContext context, String item) {
+  var snackBar = SnackBar(
+    content: Text("You just tapped $item"),
+    action: SnackBarAction(
+      label: "UNDO",
+      onPressed: () {
+        debugPrint("Performing undo");
+      },
+    ),
+  );
+  Scaffold.of(context).showSnackBar(snackBar);
 }
 
 List<String> getListElements() {
@@ -27,7 +47,7 @@ Widget getListView() {
       leading: Icon(Icons.arrow_right),
       title: Text(listItems[index]),
       onTap: () {
-        debugPrint('${listItems[index]} was tapped.');
+        showSnackBar(context, listItems[index]);
       },
     );
   });
